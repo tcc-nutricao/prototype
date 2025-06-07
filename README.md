@@ -1,6 +1,6 @@
 # 🥗 Protótipo de Sistema de Nutrição
 
-Este repositório contém o protótipo de um sistema de nutrição, inspirado em plataformas como o MyFitnessPal. O objetivo é fornecer uma base funcional para um aplicativo que ajude usuários a monitorarem sua alimentação e hábitos saudáveis. 💪🍎
+Este repositório contém o protótipo de um sistema de nutrição O objetivo é fornecer uma base funcional para um aplicativo que ajude usuários a monitorarem sua alimentação e hábitos saudáveis. 💪🍎
 
 ## 🚀 Tecnologias Utilizadas
 
