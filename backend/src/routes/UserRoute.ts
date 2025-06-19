@@ -8,7 +8,7 @@ export default (router: Router): void => {
   router
     .route(route)
     .get(validate, search)
-    .post(validate, insert);
+    .post(insert);
 
   router
     .route(`${route}/:id`)

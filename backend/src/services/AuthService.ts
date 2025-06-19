@@ -7,7 +7,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'chave_secreta_segura';
 
 export class AuthService {
   static async login(data: LoginUserDto) {
-    const user = await UserRepository.search(data.email);
+    const user = await UserRepository.findByEmail(data.email);
 
     if (!user) {
       throw new Error('E-mail ou senha inválidos');
@@ -18,19 +18,21 @@ export class AuthService {
       throw new Error('E-mail ou senha inválidos');
     }
 
-    const token = jwt.sign(
-      { id: user.id, email: user.email },
-      JWT_SECRET,
-      { expiresIn: '1d' }
-    );
+    const payload = {
+      id: user.id,
+      email: user.email,
+    };
+
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1d' });
 
     return {
+      message: 'Login bem-sucedido',
       token,
       user: {
         id: user.id,
         name: user.name,
         email: user.email,
-      }
+      },
     };
   }
 }

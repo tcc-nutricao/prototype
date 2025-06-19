@@ -63,11 +63,4 @@ export class UserController {
         }
     }
 
-
-
-
-    
-
-
-  // outros métodos: getAll, update, remove
 }
