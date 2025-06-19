@@ -56,12 +56,14 @@ const route = ref('user')
 const object= ref({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    role: null
 })
 const errors = ref({
     name: null,
     email: null,
     password: null,
+    role: null
 })
 
 const save = async () => {
