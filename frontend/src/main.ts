@@ -1,25 +1,24 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-// import router from './router'
-// import store from './store'
+import './index.css'  
+import router from './router'
 import axios from 'axios'
 
 axios.defaults.withCredentials = true
 
 const app = createApp(App)
 
-// const requireComponent = require.context('./components', true, /\.vue$/)
+app.use(router)
 
-// requireComponent.keys().forEach((fileName) => {
-//   const componentConfig = requireComponent(fileName)
-//   const componentName = fileName
-//     .split('/')
-//     .pop()
-//     .replace(/\.\w+$/, '')
-//   app.component(componentName, componentConfig.default || componentConfig)
-// })
+const components = import.meta.glob('./components/**/*.vue', { eager: true })
 
-// app.use(store)
-// app.use(router)
+Object.entries(components).forEach(([path, definition]) => {
+  const name = path
+    .split('/')
+    .pop()
+    ?.replace(/\.\w+$/, '') || ''
+  
+  app.component(name, (definition as any).default)
+})
 
 app.mount('#app')

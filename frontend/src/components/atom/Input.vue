@@ -21,7 +21,7 @@
 <script setup>
 import { ref, watch, computed } from 'vue'
 
-import { useUtils } from '@/composables/useUtils'
+import { useUtils } from '../../composables/useUtils'
 // Composables
 const { applyMask } = useUtils()
 // Props
@@ -38,6 +38,7 @@ const props = defineProps({
 // Data
 const localValue = ref(props.modelValue)
 const displayValue = ref(applyMask(localValue.value, props.mask))
+// const displayValue = ref(localValue)
 // Manipula entrada do usuário
 const handleInput = (event) => {
   displayValue.value = applyMask(event.target.value, props.mask)

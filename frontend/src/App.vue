@@ -1,10 +1,8 @@
 <template>
   <div>
-    <p>cu</p>
+    <router-view />
   </div>
 </template>
 
 <script setup lang="ts">
 </script>
-
-
