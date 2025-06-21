@@ -1,8 +1,8 @@
-# 🥗 Protótipo de Sistema de Nutrição
+# 🍎 Protótipo de Sistema de Nutrição
 
-Este repositório contém o protótipo de um sistema de nutrição O objetivo é fornecer uma base funcional para um aplicativo que ajude usuários a monitorarem sua alimentação e hábitos saudáveis. 💪🍎
+Este repositório contém o protótipo de um sistema de nutrição O objetivo é fornecer uma base funcional para um aplicativo que ajude usuários a monitorarem sua alimentação e hábitos saudáveis.
 
-## 🚀 Tecnologias Utilizadas
+## 💻 Tecnologias Utilizadas
 
 - **⚙️ Backend:** Node.js (Express)
 - **🌐 Frontend:** Vue.js
@@ -27,36 +27,50 @@ Este repositório contém o protótipo de um sistema de nutrição O objetivo é
 └── README.md
 ```
 
-## 🛠️ Como Rodar Localmente
+## 👨‍💻 Como Rodar Localmente
 
 1. **Clone o repositório**
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
-cd seu-repo
+git clone https://github.com/tcc-nutricao/prototype.git
+
+cd prototype
 ```
 
-2. **Instale as dependências**
+2. **No backend:**
 
-Backend:
 ```bash
 cd backend
-npm install
 ```
 
-Frontend:
+Instale as dependências:
 ```bash
-cd ../frontend
 npm install
+
+npm install prisma --save-dev
+
+npx prisma generate
+
 ```
 
-3. **Inicie os servidores**
-
-Backend:
+Inicie o servidor:
 ```bash
 npm run dev
 ```
 
-Frontend:
+3. **No frontend:**
+
+No diretório /prototype:
 ```bash
-npm run serve
+cd frontend
 ```
+
+Instale as dependências:
+```bash
+npm install
+```
+
+Inicie o servidor:
+```bash
+npm run dev
+```
+
