@@ -22,8 +22,8 @@ export default {
         },
         'danger': '#EA3939',
         'success': '#2FC44F',
-        'gray-medium': '#c1bdc7',
-        'gray-dark': '#867f8d',
+        'gray-medium': '#b4a9c5',
+        'gray-dark': '#877d92',
       },
       fontFamily: {
         sora: ['Sora', 'sans-serif'],

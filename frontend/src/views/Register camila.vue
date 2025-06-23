@@ -2,7 +2,7 @@
   <div class="flex items-center justify-center min-h-screen">
     <div class="container w-3/12 p-6">
       <div class="w-full flex flex-col gap-4">
-        <img class="w-[250px]" src="/src/assets/Logo.png" alt="Logo" />
+        <img class="w-[250px]" src="/src/assets/Logo-old.png" alt="Logo" />
         <Title fourxl label="Cadastre-se" />
 
         <InputText 

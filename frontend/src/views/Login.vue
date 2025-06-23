@@ -1,9 +1,10 @@
 <template>
   <div class="font-sora flex items-center justify-center min-h-screen bg-gradient-to-br from-p-500 via-p-600 to-p-700">
-    <div class="w-full max-w-xl p-12 md:p-[70px] md:pt-[45px] bg-gradient-to-br from-white to-p-200 rounded-[40px] shadow-custom">
-      <div class="flex justify-center items-center gap-3 mb-5 max-h-24 pr-6">
-        <span class="font-bold text-9xl text-transparent bg-clip-text bg-gradient-to-br from-p-200 via-p-600 to-p-900 drop-shadow-lg">+</span>
-        <span class="font-extrabold text-6xl text-p-950 drop-shadow-lg">Logo</span>
+    <div class="w-full max-w-xl p-12 md:p-[70px] md:pt-[45px] md:pb-[50px] bg-gradient-to-br from-white to-p-200 rounded-[80px] rounded-bl-[8px] rounded-tr-[8px] shadow-custom">
+      <div class="flex justify-center items-center gap-3 mb-6 pr-6 logonutri w-full">
+        <!-- <span class="font-bold text-9xl text-transparent bg-clip-text bg-gradient-to-br from-p-200 via-p-600 to-p-900 drop-shadow-lg">+</span> -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 2000 2000" fill="#8a5acd" class="logonp"><g id="Layer_3" data-name="Layer 3"><path class="cls-1 logonp" d="M945.14,343.93c-449.47,0-813.84,364.37-813.84,813.84v498.3h923.56c449.47,0,813.84-364.37,813.84-813.84V343.93Zm5.34,797.17a96.9,96.9,0,0,1-96.9,96.9h-64.7a15.75,15.75,0,0,1-15.75-15.74V935.56c0-19.91-1.13-42.76-9.48-61.23a54.54,54.54,0,0,0-15.08-19.13c-10-7.86-23-11.69-39.65-11.69-30.93,0-54.86,10.63-62.47,27.75-8.69,18.59-8.69,44-8.69,64.3V1141.1a96.9,96.9,0,0,1-96.9,96.9H476.14a15.74,15.74,0,0,1-15.74-15.74V716.54a15.74,15.74,0,0,1,15.74-15.74H611.93a15.74,15.74,0,0,1,15.74,15.74v7.31a4.28,4.28,0,0,0,6.69,3.55c121-83.28,238.78,9.19,240,10.17a137.11,137.11,0,0,1,12.1,10.62l0,0c54.76,55.07,64,99.7,64,178.9Zm366.78,113.76a287.37,287.37,0,0,1-136.74-34.45,7.59,7.59,0,0,0-11.24,6.65v91.64a96.9,96.9,0,0,1-96.9,96.9h-54.63a15.75,15.75,0,0,1-15.75-15.74V716.49a15.75,15.75,0,0,1,15.75-15.75h135.78a15.75,15.75,0,0,1,15.75,15.75v3.75a7.51,7.51,0,0,0,11.11,6.57,287.21,287.21,0,0,1,136.87-34.53c157.28,0,285.23,126.19,285.23,281.3S1474.53,1254.86,1317.26,1254.86Z"/><path class="cls-1" d="M1291.53,844.56c-72.14,0-122.24,57.87-122.24,129s50.1,129,122.24,129,130.82-57.88,130.82-129S1363.67,844.56,1291.53,844.56Z"/></g></svg>
+        <span class="font-regular text-6xl text-p-950 drop-shadow-m newake prevent-select">nutriplan</span>
       </div>
       <h1 class="text-3xl text-p-950 font-bold text-left mb-5">Faça seu login</h1>
       <p class="text-p-950 text-left mb-6">
@@ -25,20 +26,23 @@
               placeholder="Digite aqui" 
               :class="['form-input pr-12', { 'border-danger': errors.password }]"
             />
-            <button type="button" @click="togglePasswordVisibility" class="absolute inset-y-0 right-0 flex items-center pr-4 text-p-800 hover:text-p-950">
-              <svg v-if="!isPasswordVisible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <button type="button" @click="togglePasswordVisibility" class="absolute inset-y-0 right-0 flex items-center pr-4 text-p-600 hover:text-p-900 transition-colors">
+              <svg v-if="!isPasswordVisible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.243 4.243L6.228 6.228" />
               </svg>
             </button>
           </div>
           <div v-if="errors.password" class="error-message">{{ errors.password }}</div>
         </div>
-        <button type="submit" id="login-btn" :class="['w-full mt-5 p-4 text-lg', isFormValid ? 'btn-primary' : 'btn-disabled']">Login</button>
+        <button type="submit" id="login-btn" :class="['w-full mt-5 p-4 text-lg mb-2', isFormValid ? 'btn-primary' : 'btn-disabled']">Login</button>
       </form>
+      <!-- <div class="w-full flex justify-center mt-4">
+        <a href="/" class="text-p-600 hover:underline">Esqueci minha senha</a>
+      </div> -->
     </div>
     <div v-if="showIncorrectModal" class="modal-overlay">
         <div class="modal-content">

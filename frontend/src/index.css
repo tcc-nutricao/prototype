@@ -3,7 +3,47 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face{
+    font-family: 'Newake';
+
+    src: url('./assets/Newake.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+*::selection{
+    background-color: #b49fe6;
+    color: white;
+}
+*::-moz-selection{
+    background-color: #8a5acd;
+    color: white;
+}
+*::-webkit-selection{
+    background-color: #8a5acd;
+    color: white;
+}
+
+
 .btn-primary { @apply p-3 rounded-borda border-2 border-transparent bg-p-600 text-white font-semibold cursor-pointer transition-all duration-300 hover:bg-p-700 hover:border-p-400 hover:shadow-btn-hover active:bg-p-900 active:scale-95; }
 .btn-secondary {width: 50%; font-weight: regular; @apply flex-grow p-3 rounded-borda border-2 border-gray-medium bg-white text-gray-medium cursor-pointer transition-all duration-300 hover:border-p-400 hover:text-p-500 hover:shadow-btn-hover active:bg-p-200 active:scale-95; }
 .btn-secondary.active { @apply bg-white text-p-600 border-p-600 font-bold; }
 .btn-disabled { @apply w-full p-3 rounded-borda border-2 border-transparent bg-gray-medium text-white font-semibold hover:bg-gray-dark transition-colors duration-300 cursor-default; }
+.newake { font-family: 'Newake'; }
+.logonutri{
+    transition: 0.23s;
+}
+.logonutri:hover{
+    opacity: 0.85;
+    transition: 0.23s;
+    cursor: pointer;
+}
+.logonutri:active{
+    opacity: 0.7;
+    transform: scale(0.97);
+    gap: 10px;
+}
+.prevent-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
