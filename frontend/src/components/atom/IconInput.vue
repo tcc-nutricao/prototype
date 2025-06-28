@@ -1,7 +1,7 @@
 <template>
   <Flex
     center
-    class="w-[42px] h-full cursor-pointer bg-gray-100 text-[#5F6368]"
+    class="w-[42px] h-full cursor-pointer text-[#5F6368]"
   >
     <IconSolid :icon="props.icon" />
   </Flex>
@@ -9,6 +9,6 @@
 
 <script setup>
   const props = defineProps({
-    icon: String,
+    icon: String
   })
 </script>

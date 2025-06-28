@@ -16,6 +16,7 @@
       { [lightPurpleBorderClass]: lightPurple && outlined },
       { [mediumPurpleBorderClass]: mediumPurple && outlined },
       { [darkPurpleBorderClass]: darkPurple && outlined },
+      { [darkGrayBorderClass]: darkGray && outlined },
       { [redClass]: red && !outlined },
       { [redBorderClass]: red && outlined },
       { 'rounded-lg bg-gray-200 hover:bg-gray-300 border border-gray-300': gray },
@@ -71,6 +72,10 @@ const props = defineProps({
     type: [Boolean, Number],
     default: false,
   },
+  darkGray: {
+    type: [Boolean, Number],
+    default: false,
+  },
   dark: {
     type: [Boolean, Number],
     default: false,
@@ -119,6 +124,10 @@ const mediumPurpleBorderClass = computed(() => {
 
 const darkPurpleBorderClass = computed(() => {
   return 'border border-[#663C9B] hover:border-purple-600 text-[#663C9B]'
+})
+
+const darkGrayBorderClass = computed(() => {
+  return 'border border-[#7A6E94] hover:border-black text-[#7A6E94]'
 })
 
 const redBorderClass = computed(() => {

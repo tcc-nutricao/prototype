@@ -26,10 +26,8 @@ export default {
         'gray-dark': '#877d92',
       },
       fontFamily: {
+        newake: ["'Newake'", "sans-serif"],
         sora: ['Sora', 'sans-serif'],
-      },
-      borderRadius: {
-        'borda': '12px',
       },
       boxShadow: {
         'custom': '0 15px 40px rgba(0, 0, 0, 0.2)',

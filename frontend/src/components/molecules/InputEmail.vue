@@ -7,9 +7,9 @@
       :placeholder="props.placeholder"
       :disabled="props.disabled"      
     >
-      <template #pre-icon>
+      <!-- <template #pre-icon>
         <IconInput icon="fa-envelope" class="border-r" />
-      </template>
+      </template> -->
     </Input>
     <Error v-model="props.error" />
   </FlexCol>

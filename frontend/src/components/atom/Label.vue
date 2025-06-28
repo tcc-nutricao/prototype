@@ -1,5 +1,5 @@
 <template>
-  <Flex class="block px-1 font-semibold mb-2" :class="classes">
+  <Flex class="block text-[#351F56] font-semibold" :class="classes">
     {{ props.label }}
     <span v-if="props.required" class="text-danger-500 pl-1">
       <strong>*</strong>

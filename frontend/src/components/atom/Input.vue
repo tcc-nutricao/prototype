@@ -1,9 +1,9 @@
 <template>
-  <Flex items-center class="rounded-lg border text-sm overflow-hidden h-[42px]" :class="classes">
+  <Flex items-center class="rounded-lg border text-sm overflow-hidden h-[42px] focus-within:border-[#8A5ACD] focus-within:border-2" :class="classes">
     <slot name="pre-icon" />
     <slot name="input">
       <input
-        class="px-2 grow border-none bg-none focus:outline-none focus:ring-0 text-gray-700"
+        class="px-2 grow border-none bg-transparent focus:outline-none focus:ring-0 text-gray-700"
         :class="{ 'text-danger-500': props.error }"
         v-model="displayValue"
         @input="handleInput"

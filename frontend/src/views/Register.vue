@@ -1,207 +1,83 @@
 <template>
-  <div class="font-sora flex items-center justify-center min-h-screen bg-gradient-to-br from-p-500 via-p-600 to-p-700">
-    <div class="w-full max-w-xl p-12 md:p-[70px] md:pt-[45px] md:pb-[55px] bg-gradient-to-br from-white to-p-200 rounded-[80px] rounded-bl-[8px] rounded-tr-[8px] shadow-custom ptop-8">
-      <div class="flex justify-center items-center gap-3 mb-6 max-h-24 pr-6 logonutri">
-        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 2000 2000" fill="#8a5acd" class="logonp"><g id="Layer_3" data-name="Layer 3"><path class="cls-1 logonp" d="M945.14,343.93c-449.47,0-813.84,364.37-813.84,813.84v498.3h923.56c449.47,0,813.84-364.37,813.84-813.84V343.93Zm5.34,797.17a96.9,96.9,0,0,1-96.9,96.9h-64.7a15.75,15.75,0,0,1-15.75-15.74V935.56c0-19.91-1.13-42.76-9.48-61.23a54.54,54.54,0,0,0-15.08-19.13c-10-7.86-23-11.69-39.65-11.69-30.93,0-54.86,10.63-62.47,27.75-8.69,18.59-8.69,44-8.69,64.3V1141.1a96.9,96.9,0,0,1-96.9,96.9H476.14a15.74,15.74,0,0,1-15.74-15.74V716.54a15.74,15.74,0,0,1,15.74-15.74H611.93a15.74,15.74,0,0,1,15.74,15.74v7.31a4.28,4.28,0,0,0,6.69,3.55c121-83.28,238.78,9.19,240,10.17a137.11,137.11,0,0,1,12.1,10.62l0,0c54.76,55.07,64,99.7,64,178.9Zm366.78,113.76a287.37,287.37,0,0,1-136.74-34.45,7.59,7.59,0,0,0-11.24,6.65v91.64a96.9,96.9,0,0,1-96.9,96.9h-54.63a15.75,15.75,0,0,1-15.75-15.74V716.49a15.75,15.75,0,0,1,15.75-15.75h135.78a15.75,15.75,0,0,1,15.75,15.75v3.75a7.51,7.51,0,0,0,11.11,6.57,287.21,287.21,0,0,1,136.87-34.53c157.28,0,285.23,126.19,285.23,281.3S1474.53,1254.86,1317.26,1254.86Z"/><path class="cls-1" d="M1291.53,844.56c-72.14,0-122.24,57.87-122.24,129s50.1,129,122.24,129,130.82-57.88,130.82-129S1363.67,844.56,1291.53,844.56Z"/></g></svg>
-        <span class="font-regular text-6xl text-p-950 drop-shadow-m newake prevent-select">nutriplan</span>
-      </div>
-      <h1 class="text-3xl text-p-950 font-bold text-left mb-5">Cadastre-se</h1>
-      <p class="text-p-950 text-left mb-6">
-        Já possui uma conta? <a href="/" class="text-p-600 hover:underline">Faça login aqui.</a>
-      </p>
-      <form @submit.prevent="save" novalidate>
-        <div class="form-group">
-          <label for="name" class="form-label">Nome</label>
-          <input type="text" id="name" v-model="object.name" @blur="validateName" placeholder="Digite aqui" :class="['form-input', { 'border-danger': errors.name }]" />
-          <div v-if="errors.name" class="error-message">{{ errors.name }}</div>
-        </div>
-
-        <div class="form-group">
-          <label for="email" class="form-label">E-mail</label>
-          <input type="email" id="email" v-model="object.email" @blur="validateEmail" @input="validateEmail" placeholder="Digite aqui" :class="['form-input', { 'border-danger': errors.email }]" />
-          <div v-if="errors.email" class="error-message">{{ errors.email }}</div>
-        </div>
-
-        <div class="form-group">
-            <label for="password" class="form-label">Senha</label>
-            <div class="relative">
-                <input 
-                :type="isPasswordVisible ? 'text' : 'password'"
-                id="password" 
+    <div class="font-sora flex items-center justify-center min-h-screen bg-gradient-to-br from-p-500 via-p-600 to-p-700">
+        <div class="w-full max-w-xl p-[70px] bg-gradient-to-br from-white to-p-200 rounded-tl-[70px] rounded-br-[70px] rounded-bl-xl rounded-tr-xl shadow-custom">
+            <Logo class="mb-5" />
+            <p class="text-[#351F56] sora font-bold text-3xl mb-5">Cadastre-se</p>
+            <p class="mb-5">Já tem conta? 
+                <span 
+                    class="hover:font-semibold cursor-pointer text-[#8A5ACD]" 
+                    @click="$router.push('/')">
+                    Faça login aqui.
+                </span>
+            </p>
+            <InputText
+                class="mb-5"
+                label="Nome"
+                placeholder="Insira o Nome"
+                v-model="object.name"
+                :error="errors.name"
+                required />
+            <InputEmail
+                class="mb-5"
+                label="Email"
+                placeholder="Insira o Email"
+                v-model="object.email"
+                :error="errors.email"
+                required />
+            <InputPassword 
+                class="mb-5"
+                label="Senha"
+                placeholder="Insira a Senha"
                 v-model="object.password"
-                @focus="isPasswordFocused = true"
-                @blur="handlePasswordBlur"
-                @input="validatePasswordRealtime"
-                placeholder="Digite aqui" 
-                :class="['form-input pr-12', { 'border-danger': errors.password }]"
-                />
-                <button type="button" @click="togglePasswordVisibility" class="absolute inset-y-0 right-0 flex items-center pr-4 text-p-700 hover:text-p-900 transition-colors">
-                <svg v-if="!isPasswordVisible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.243 4.243L6.228 6.228" />
-                </svg>
-                </button>
-            </div>
-            <div v-if="errors.password" class="error-message">{{ errors.password }}</div>
-            <div v-show="isPasswordFocused || (object.password != '' && !passwordValidation.isValid)" class="mt-1.5">
-                <p :class="['password-req']">Sua senha deve conter no mínimo:</p>
-                <p :class="['password-req', { 'color-success': passwordValidation.isLengthOk, 'color-danger': !passwordValidation.isLengthOk}]">8 caracteres</p>
-                <p :class="['password-req', { 'color-success': passwordValidation.hasUppercase, 'color-danger': !passwordValidation.hasUppercase}]">1 letra maiúscula e 1 minúscula</p>
-            </div>
-            </div>
-
-        <div class="mb-2">
-            <p id="selecione-tipo" :class="['text-center text-m font-regular text-p-950', { 'invalid': showUserTypeError }]">Selecione o tipo de usuário:</p>
-            <div class="flex gap-4 mt-3">
-                <button type="button" @click="selectUserType('padrao')" :class="['btn-secondary', { 'active': object.role === 'padrao' }]">Padrão</button>
-                <button type="button" @click="handleProfessionalClick" :class="['btn-secondary', { 'active': object.role === 'profissional' }]">Profissional</button>
-            </div>
+                :error="errors.password"
+                required />
+            <OptionsButton v-model="selectedButton" :buttons="buttons" class="mb-5" />
+            <Flex justifyCenter>
+              <Button mediumPurple label="Criar conta" class="w-[50%]" />
+            </Flex>
         </div>
 
-        <button type="submit" :class="['w-full mt-5 p-4 text-lg', isFormValid ? 'btn-primary' : 'btn-disabled']">Criar conta</button>
-      </form>
+        <Modal :content="modalContent" v-if="openModal" @closeModal="openModal = false" />
     </div>
-
-    <div v-if="isConfirmationModalVisible" class="modal-overlay">
-        <div class="modal-content">
-            <p class="text-lg">O perfil profissional é destinado apenas a nutricionistas e profissionais da saúde.</p>
-            <div class="modal-actions">
-                <button @click="isConfirmationModalVisible = false" class="btn-secondary w-1/2">Voltar</button>
-                <button @click="confirmProfessional" class="btn-primary w-1/2">OK</button>
-            </div>
-        </div>
-    </div>
-    
-    <div v-if="isSuccessModalVisible" class="modal-overlay">
-        <div class="modal-content">
-            <p>Conta criada com sucesso!</p>
-            <div class="modal-actions">
-                <button @click="goToLogin" class="btn-primary w-full">OK</button>
-            </div>
-        </div>
-    </div>
-  </div>
 </template>
 
-<script setup lang="ts">
-import { ref, computed } from 'vue'
+<script setup>
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-
-async function insert(route: string, data: any) {
-    console.log(`[API MOCK] Chamando insert em '${route}' com:`, data);
-    if (data.email === 'existente@email.com') {
-        return {
-            error: true,
-            data: { email: 'Este e-mail já está cadastrado no sistema.' }
-        };
-    }
-    return { error: false, data: {} };
-}
 
 const router = useRouter()
 
-const route = ref('user')
 const object = ref({
-    name: '',
-    email: '',
-    password: '',
-    role: null as 'padrao' | 'profissional' | null,
+  name: '',
+  email: '',
+  password: ''
 })
 const errors = ref({
-    name: null as string | null,
-    email: null as string | null,
-    password: null as string | null,
-    role: null as string | null,
+  name: null,
+  email: null,
+  password: null
 })
+const buttons = ref([
+  { label: 'Padrão' },
+  { label: 'Profissional' }
+])
+const openModal = ref(false)
+const selectedButton = ref(null)
+const modalContent = ref('O perfil profissional é destinado apenas a nutricionistas e profissionais da saúde.')
 
-const isPasswordFocused = ref(false)
-const isConfirmationModalVisible = ref(false)
-const isSuccessModalVisible = ref(false)
-const showUserTypeError = ref(false)
-
-const passwordValidation = computed(() => {
-  const pass = object.value.password || '';
-  const isLengthOk = pass.length >= 8;
-  const hasUppercase = /[A-Z]/.test(pass) && /[a-z]/.test(pass);
-  return { isLengthOk, hasUppercase, isValid: isLengthOk && hasUppercase };
-});
-
-const isFormValid = computed(() => {
-    return object.value.name.trim() !== '' &&
-           /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(object.value.email) &&
-           passwordValidation.value.isValid &&
-           object.value.role !== null;
-});
-
-const isPasswordVisible = ref(false);
-
-const togglePasswordVisibility = () => {
-    isPasswordVisible.value = !isPasswordVisible.value;
-};
-
-const validateName = () => { errors.value.name = object.value.name.trim() ? null : 'Campo obrigatório'; }
-const validateEmail = () => { 
-    if (!object.value.email) errors.value.email = 'Campo obrigatório';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(object.value.email)) errors.value.email = 'Formato de e-mail inválido';
-    else if (object.value.email.trim() == null) errors.value.email = 'Campo obrigatório';
-    else errors.value.email = null;
-};
-const validatePasswordRealtime = () => { if (passwordValidation.value.isValid) errors.value.password = null; };
-const handlePasswordBlur = () => {
-    isPasswordFocused.value = false;
-    if (!object.value.password) errors.value.password = 'Campo obrigatório';
-    // else if (!passwordValidation.value.isValid) errors.value.password = 'Senha inválida';
-    else errors.value.password = null;
-};
-
-const selectUserType = (type: 'padrao' | 'profissional') => {
-    object.value.role = type;
-    showUserTypeError.value = false;
-};
-const handleProfessionalClick = () => { isConfirmationModalVisible.value = true; };
-const confirmProfessional = () => {
-    selectUserType('profissional');
-    isConfirmationModalVisible.value = false;
-};
-const goToLogin = () => { router.push('/'); };
-
-const save = async () => {
-    validateName();
-    validateEmail();
-    handlePasswordBlur();
-    showUserTypeError.value = object.value.role === null;
-
-    if (isFormValid.value) {
-        const response = await insert(route.value, object.value);
-        
-
-        if (!response.error) {
-            isSuccessModalVisible.value = true;
-        } else {
-            console.error("Erro do backend:", response.data);
-        }
-    }
+const navigate = (route) => {
+  router.push(route)
 }
+
+watch(
+  selectedButton,
+  (newValue) => {
+    if (newValue && newValue.label === 'Profissional') {
+      openModal.value = true
+    }
+  }
+)
+
 </script>
 
-<style scoped>
 
-
-.form-group { @apply mb-5 text-left; }
-.form-label { @apply block text-base font-semibold mb-2 text-p-950; }
-.form-input { @apply w-full p-3 border-2 border-gray-200 rounded-borda text-sm transition-colors duration-300 focus:outline-none focus:border-p-600; }
-.error-message { @apply text-danger text-xs font-semibold mt-1.5 pl-1 min-h-[1.2em]; }
-.password-req { @apply text-gray-dark text-xs mt-1 transition-colors; }
-
-.modal-overlay { @apply fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 transition-opacity duration-300; }
-.modal-content { @apply bg-white p-8 rounded-borda text-center max-w-sm transform scale-100 transition-transform duration-300; }
-.modal-actions { @apply flex justify-center gap-4 mt-6; }
-
-.color-success { @apply text-success; }
-.color-danger { @apply text-danger; }
-
-#selecione-tipo.invalid { @apply text-danger underline decoration-2; }
-</style>
