@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { UserService } from '../services/UserService';
+import { log } from 'console';
 
 export class UserController {
     static async search(req: Request, res: Response, next: NextFunction) {
@@ -15,7 +16,15 @@ export class UserController {
 
     static async insert(req: Request, res: Response, next: NextFunction) {
         try {
-            const user = await UserService.insert(req.body);
+            const data = req.body;
+
+            if (data.role === 'Profissional') {
+                data.role = 'PROFESSIONAL';
+            } else {
+                data.role = 'STANDARD';
+            }
+
+            const user = await UserService.insert(data);
             return res.status(201).json(user);
         } catch (err) {
             next(err);

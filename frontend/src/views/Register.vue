@@ -33,7 +33,7 @@
                 required />
             <OptionsButton v-model="selectedButton" :buttons="buttons" class="mb-5" />
             <Flex justifyCenter>
-              <Button mediumPurple label="Criar conta" class="w-[50%]" />
+              <Button mediumPurple label="Criar conta" class="w-[50%]" @click="save" />
             </Flex>
         </div>
 
@@ -42,20 +42,24 @@
 </template>
 
 <script setup>
+import { insert } from '../../crud'
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
+const route = ref('user')
 const object = ref({
   name: '',
   email: '',
-  password: ''
+  password: '',
+  role: ''
 })
 const errors = ref({
   name: null,
   email: null,
-  password: null
+  password: null,
+  role: null
 })
 const buttons = ref([
   { label: 'Padrão' },
@@ -69,11 +73,22 @@ const navigate = (route) => {
   router.push(route)
 }
 
+const save = async () => {
+  const response = await insert(route.value, object.value)
+  errors.value = response.error ? response.data : {}
+  if (!response.error) {
+    router.back()
+  }
+}
+
 watch(
   selectedButton,
   (newValue) => {
-    if (newValue && newValue.label === 'Profissional') {
-      openModal.value = true
+    if (newValue) {
+      object.value.role = newValue.label
+      if (newValue.label === 'Profissional') {
+        openModal.value = true
+      }
     }
   }
 )

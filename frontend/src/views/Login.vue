@@ -25,23 +25,24 @@
                 :error="errors.password"
                 required />
             <div class="flex justify-center">
-                <Button mediumPurple label="Login" class="w-[50%]" />
+                <Button mediumPurple label="Login" class="w-[50%]" @click="login" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { insert } from '../../crud'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
+const route = ref('auth/login')
 const object = ref({
     email: '',
     password: ''
 })
-
 const errors = ref({
     email: null,
     password: null
@@ -49,6 +50,14 @@ const errors = ref({
 
 const navigate = (route) => {
   router.push(route)
+}
+
+const login = async () => {
+    const response = await insert(route.value, object.value)
+    errors.value = response.error ? response.data : {}
+    if (!response.error) {
+        router.back()
+    }
 }
 
 </script>

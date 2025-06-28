@@ -18,6 +18,7 @@ export class UserService {
     static async insert(data: CreateUserDto) {
         try {
             const hashedPassword = await bcrypt.hash(data.password, 10);
+
             return await UserRepository.create({
                 ...data,
                 password: hashedPassword

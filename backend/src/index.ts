@@ -1,4 +1,5 @@
 import express, { Router } from 'express'
+import cors from 'cors'
 
 import UserRoute from './routes/UserRoute'
 import AuthRoute from './routes/AuthRoute'
@@ -9,10 +10,12 @@ const port = process.env.PORT || 3000
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const router = Router() // <- EXPRESS.Router
+app.use(cors({ credentials: true, origin: process.env.CORS }))
+
+const router = Router() 
 app.use(router)
 
-UserRoute(router) // <- Deve exportar uma função que recebe router
+UserRoute(router) 
 AuthRoute(router)
 
 app.listen(port, () => {
