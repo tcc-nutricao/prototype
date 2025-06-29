@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { UserService } from '../services/UserService';
-import { log } from 'console';
+import { AppError } from '../exceptions/AppError';
+import { formatZodErrors } from '../utils/formatZodErrors';
+import { CreateUserSchema } from '../dtos/user/CreateUserDto';
 
 export class UserController {
     static async search(req: Request, res: Response, next: NextFunction) {
@@ -16,6 +18,13 @@ export class UserController {
 
     static async insert(req: Request, res: Response, next: NextFunction) {
         try {
+            const parseResult = CreateUserSchema.safeParse(req.body);
+
+            if (!parseResult.success) {
+                const errors = formatZodErrors(parseResult.error);
+                return res.status(422).json({ error: true, data: errors });
+            }
+
             const data = req.body;
 
             if (data.role === 'Profissional') {
@@ -27,12 +36,23 @@ export class UserController {
             const user = await UserService.insert(data);
             return res.status(201).json(user);
         } catch (err) {
-            next(err);
+            if (err instanceof AppError) {
+                return res.status(err.statusCode).json({ error: true, data: err.details });
+            }
+
+             next(err as Error);        
         }
     }
 
     static async update(req: Request, res: Response, next: NextFunction) {
         try {
+            const parseResult = CreateUserSchema.safeParse(req.body);
+
+            if (!parseResult.success) {
+                const errors = formatZodErrors(parseResult.error);
+                return res.status(422).json({ error: true, data: errors });
+            }
+            
             const { id, ...updateData } = req.body;
 
             if (!id) {

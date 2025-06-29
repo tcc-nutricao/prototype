@@ -17,7 +17,7 @@
         />
       </template>
     </Input>
-    <Error v-model="props.error" />
+    <Error v-model="props.error" :message="props.error" />
   </FlexCol>
 </template>
 

@@ -2,7 +2,7 @@ import { CreateUserDto } from '../dtos/user/CreateUserDto';
 import { UpdateUserDto } from '../dtos/user/UpdateUserDto';
 import { UserRepository } from '../repositories/UserRepository';
 import { SearchFilters, SearchResult } from '../models/User';
-
+import { AppError } from '../exceptions/AppError';
 import bcrypt from 'bcrypt';
 
 export class UserService {
@@ -17,6 +17,12 @@ export class UserService {
 
     static async insert(data: CreateUserDto) {
         try {
+            const existing = await UserRepository.findByEmail(data.email);
+            
+            if (existing) {
+                throw new AppError('Email já cadastrado', 400, { errors: 'Este e-mail já está em uso.' });
+            }
+
             const hashedPassword = await bcrypt.hash(data.password, 10);
 
             return await UserRepository.create({

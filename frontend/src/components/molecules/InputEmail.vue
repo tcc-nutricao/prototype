@@ -11,7 +11,7 @@
         <IconInput icon="fa-envelope" class="border-r" />
       </template> -->
     </Input>
-    <Error v-model="props.error" />
+    <Error v-model="props.error" :message="props.error" />
   </FlexCol>
 </template>
 
@@ -22,7 +22,7 @@
     label: String,
     required: Boolean,
     disabled: Boolean,
-    error: Array,
+    error: String,
     modelValue: [String, Number],
     placeholder: String,
     min: String,

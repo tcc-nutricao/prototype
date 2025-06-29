@@ -12,7 +12,7 @@
   const props = defineProps({
     label: String,
     required: Boolean,
-    error: [Array, Boolean],
+    error: [Array, String],
   })
-  const classes = computed(() => [{ 'text-danger-500': props.error }])
+  const classes = computed(() => [{ 'text-red-500': props.error }])
 </script>

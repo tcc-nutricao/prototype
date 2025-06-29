@@ -50,8 +50,8 @@ const emitEnter = () => {
 }
 // Computed
 const classes = computed(() => ({
-  'border-danger-500': props.error,
-  'text-danger-500': props.error,
+  'border-red-500': props.error,
+  'text-red-500': props.error,
   'bg-slate-200': props.disabled,
   'border-slate-400': !props.error
 }))
