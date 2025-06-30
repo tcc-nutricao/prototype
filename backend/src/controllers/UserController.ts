@@ -20,11 +20,7 @@ export class UserController {
         try {
             const data = req.body;
 
-            if (data.role === 'Profissional') {
-                data.role = 'PROFESSIONAL';
-            } else {
-                data.role = 'STANDARD';
-            }
+            data.role = this.translateRole(data.role)
 
             const parseResult = CreateUserSchema.safeParse(data);
 
@@ -46,14 +42,18 @@ export class UserController {
 
     static async update(req: Request, res: Response, next: NextFunction) {
         try {
-            const parseResult = CreateUserSchema.safeParse(req.body);
+            const data = req.body;
+
+            data.role = this.translateRole(data.role)
+
+            const parseResult = CreateUserSchema.safeParse(data);
 
             if (!parseResult.success) {
                 const errors = formatZodErrors(parseResult.error);
                 return res.status(422).json({ error: true, data: errors });
             }
             
-            const { id, ...updateData } = req.body;
+            const { id, ...updateData } = data;
 
             if (!id) {
                 return res.status(400).json({
@@ -91,5 +91,14 @@ export class UserController {
             next(err);
         }
     }
+
+    static translateRole(role: string | null): string | null {
+        const roleNames = [
+            { label: 'Profissional', value: 'PROFESSIONAL' },
+            { label: 'Padrão', value: 'STANDARD' },
+        ]
+
+        return roleNames.find(item => item.label === role)?.value ?? null
+     }
 
 }
