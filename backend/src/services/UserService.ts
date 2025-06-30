@@ -20,7 +20,7 @@ export class UserService {
             const existing = await UserRepository.findByEmail(data.email);
             
             if (existing) {
-                throw new AppError('Email já cadastrado', 400, { errors: 'Este e-mail já está em uso.' });
+                throw new AppError('Email já cadastrado', 400, { emailInUse: 'Este e-mail já está em uso.' });
             }
 
             const hashedPassword = await bcrypt.hash(data.password, 10);
@@ -37,6 +37,12 @@ export class UserService {
 
     static async update(id: number, data: UpdateUserDto) {
         try {
+            const existing = await UserRepository.findByEmail(data.email);
+            
+            if (existing) {
+                throw new AppError('Email já cadastrado', 400, { emailInUse: 'Este e-mail já está em uso.' });
+            }
+
             return await UserRepository.update(id, data);
         } catch (err) {
             console.log(err)

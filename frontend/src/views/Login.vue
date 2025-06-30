@@ -22,7 +22,7 @@
                 label="Senha"
                 placeholder="Insira a Senha"
                 v-model="object.password"
-                :error="errors.password"
+                :error="errors.password || errors.invalidCredentials"
                 required />
             <div class="flex justify-center">
                 <Button mediumPurple label="Login" class="w-[50%]" @click="login" />
@@ -45,7 +45,8 @@ const object = ref({
 })
 const errors = ref({
     email: null,
-    password: null
+    password: null,
+    invalidCredentials: null
 })
 
 const navigate = (route) => {

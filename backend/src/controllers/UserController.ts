@@ -64,7 +64,11 @@ export class UserController {
             const user = await UserService.update(id, updateData);
             return res.status(200).json(user); 
         } catch (err) {
-            next(err);
+            if (err instanceof AppError) {
+                return res.status(err.statusCode).json({ error: true, data: err.details });
+            }
+
+            next(err as Error); 
         }
     }
 

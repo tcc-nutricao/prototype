@@ -22,7 +22,7 @@
               label="Email"
               placeholder="Insira o Email"
               v-model="object.email"
-              :error="errors.email"
+              :error="errors.email || errors.emailInUse"
               required />
             <InputPassword 
               class="mb-5"
@@ -58,7 +58,8 @@ const errors = ref({
   name: null,
   email: null,
   password: null,
-  role: null
+  role: null,
+  emailInUse: null
 })
 const buttons = ref([
   { label: 'Padrão'},
