@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import LoadingFeatures from '../views/LoadingFeatures.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -13,7 +14,12 @@ const routes: RouteRecordRaw[] = [
     path: '/register',
     name: 'Register',
     component: Register
-  }
+  },
+  {
+    path: '/loading-features',
+    name: 'LoadingFeatures',
+    component: LoadingFeatures
+  },
 ]
 
 const router = createRouter({

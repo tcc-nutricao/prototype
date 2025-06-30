@@ -57,7 +57,7 @@ const login = async () => {
     const response = await insert(route.value, object.value)
     errors.value = response.error ? response.data.data : {}
     if (!response.error) {
-        router.back()
+        navigate('/loading-features')
     }
 }
 
