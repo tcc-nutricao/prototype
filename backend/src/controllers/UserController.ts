@@ -18,19 +18,19 @@ export class UserController {
 
     static async insert(req: Request, res: Response, next: NextFunction) {
         try {
-            const parseResult = CreateUserSchema.safeParse(req.body);
-
-            if (!parseResult.success) {
-                const errors = formatZodErrors(parseResult.error);
-                return res.status(422).json({ error: true, data: errors });
-            }
-
             const data = req.body;
 
             if (data.role === 'Profissional') {
                 data.role = 'PROFESSIONAL';
             } else {
                 data.role = 'STANDARD';
+            }
+
+            const parseResult = CreateUserSchema.safeParse(data);
+
+            if (!parseResult.success) {
+                const errors = formatZodErrors(parseResult.error);
+                return res.status(422).json({ error: true, data: errors });
             }
 
             const user = await UserService.insert(data);

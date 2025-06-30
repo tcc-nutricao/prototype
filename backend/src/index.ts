@@ -1,5 +1,6 @@
 import express, { Router } from 'express'
 import cors from 'cors'
+import 'dotenv/config'
 
 import UserRoute from './routes/UserRoute'
 import AuthRoute from './routes/AuthRoute'

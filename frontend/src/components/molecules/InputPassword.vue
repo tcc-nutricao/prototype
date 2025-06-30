@@ -17,7 +17,7 @@
         />
       </template>
     </Input>
-    <Error v-model="props.error" :message="props.error" />
+    <Error v-model="props.error" :message="error" />
   </FlexCol>
 </template>
 
@@ -33,7 +33,7 @@
     placeholder: String,
   })
 
-  const emits = defineEmits(['update:modelValue'])
+  const emits = defineEmits(['enter', 'update:modelValue'])
   const localValue = ref(props.modelValue)
   const error = ref(props.error)
   const open = ref(true)
