@@ -1,5 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 import { AuthController } from '../controllers/AuthController';
+import jwt from 'jsonwebtoken';
+
+interface JwtPayload {
+  id: number;
+  email: string;
+}
 
 export const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -8,13 +14,6 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
     next(error);
   }
 };
-
-import jwt from 'jsonwebtoken';
-
-interface JwtPayload {
-  id: number;
-  email: string;
-}
 
 export const validate = (req: Request, res: Response, next: NextFunction): void => {
   const authHeader = req.headers.authorization;
