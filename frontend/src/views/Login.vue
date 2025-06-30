@@ -2,7 +2,7 @@
     <div class="font-sora flex items-center justify-center min-h-screen bg-gradient-to-br from-p-500 via-p-600 to-p-700">
         <div class="w-full max-w-xl p-[70px] bg-gradient-to-br from-white to-p-200 rounded-tl-[70px] rounded-br-[70px] rounded-bl-xl rounded-tr-xl shadow-custom">
             <Logo class="mb-5" />
-            <p class="text-[#351F56] sora font-bold text-3xl mb-5 select-none">Login</p>
+            <p class="text-[#351F56] font-sora font-bold text-3xl mb-5 select-none">Login</p>
             <p class="mb-5">Novo usuário? 
                 <span 
                     class="hover:font-semibold cursor-pointer text-[#8A5ACD]" 
